@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : animationsIK
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 3f;
     [SerializeField] private float _jumpHeight = 1f;
@@ -9,14 +9,17 @@ public class PlayerController : animationsIK
     [SerializeField] private LayerMask _groundMask;
     [Space]
     [SerializeField] private float _playerGravity = -9.81f;
+
     private float _horizontal;
     private float _vertical;
     private CharacterController _controller;
+    private AnimationsIK _animationsIK;
     private Vector3 _velocity;
     
     private void Start() 
     {
         _controller = GetComponent<CharacterController>();
+        _animationsIK = GetComponent<AnimationsIK>();
     }
 
     private void Update() 
@@ -24,7 +27,8 @@ public class PlayerController : animationsIK
         KeyInput();
         PlayerMove();
         CustomPhysics();
-        AnimatorParametersUpdate(_horizontal, _vertical);
+
+        _animationsIK.AnimatorParametersUpdate(_horizontal, _vertical);
     }
 
     private void KeyInput()
@@ -32,12 +36,14 @@ public class PlayerController : animationsIK
         _horizontal = Input.GetAxis("Horizontal");
         _vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetButtonDown("Jump") && isGrounded()) Jump();
+        if (Input.GetButtonDown("Jump")) Jump();
     }
 
     private void PlayerMove()
     {
         Vector3 move = transform.right * _horizontal + transform.forward * _vertical;
+
+        if (move.magnitude > 1) move.Normalize();
         _controller.Move(move * _speed * Time.deltaTime);
     }
 
@@ -45,7 +51,7 @@ public class PlayerController : animationsIK
     {
         if (Input.GetButtonDown("Jump") && isGrounded())
         {
-            _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _playerGravity);
+            _velocity.y = Mathf.Sqrt(-_jumpHeight * _playerGravity);
         }
     }
 

@@ -5746,6 +5746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4530626957495878907}
+  - component: {fileID: 4530626957495878913}
   - component: {fileID: 4530626957495878908}
   - component: {fileID: 4530626957495878909}
   - component: {fileID: 4530626957495878911}
@@ -6331,7 +6332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _jumpHeight: 1
+  _jumpHeight: 2
   _groundCheck: {fileID: 1894119628}
   _groundMask:
     serializedVersion: 2
@@ -6493,6 +6494,18 @@ MonoBehaviour:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     m_Visible: 1
+--- !u!114 &4530626957495878913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867419563266776641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d873bc98fe110a41b9af3aadf53a818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &4547029110512379628
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
