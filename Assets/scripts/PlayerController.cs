@@ -32,13 +32,13 @@ public class PlayerController : animationsIK
         _horizontal = Input.GetAxis("Horizontal");
         _vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetButtonDown("Jump") && isGrounded()) Jump();
+        if (Input.GetButtonDown("Jump")) Jump();
     }
 
     private void PlayerMove()
     {
         Vector3 move = transform.right * _horizontal + transform.forward * _vertical;
-        _controller.Move(move * _speed * Time.deltaTime);
+        _controller.Move(move.normalized * _speed * Time.deltaTime);
     }
 
     private void Jump()
