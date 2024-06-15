@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private void PlayerMove()
     {
         Vector3 move = transform.right * _horizontal + transform.forward * _vertical;
-
         if (move.magnitude > 1) move.Normalize();
         _controller.Move(move * _speed * Time.deltaTime);
     }
